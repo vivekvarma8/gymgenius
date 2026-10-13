@@ -1,7 +1,6 @@
-import express, { Express } from "express";
+import express, { Express, Request, Response, NextFunction } from "express";
 import cors from "cors";
 import helmet from "helmet";
-import { json } from "body-parser";
 import { healthRouter } from "./modules/health/health.router";
 import { authRouter } from "./modules/auth/auth.router";
 import { membersRouter } from "./modules/members/members.router";
@@ -16,7 +15,7 @@ export function createApp(): Express {
 
   app.use(helmet());
   app.use(cors({ origin: config.server.corsOrigin, optionsSuccessStatus: 200 }));
-  app.use(json());
+  app.use(express.json());
   app.use(apiRateLimiter);
 
   app.use("/api/v1/health", healthRouter);
@@ -25,11 +24,11 @@ export function createApp(): Express {
   app.use("/api/v1/messages", messageRouter);
   app.use("/api/v1/ai", aiRouter);
 
-  app.use((req, res) => {
+  app.use((req: Request, res: Response) => {
     res.status(404).json({ message: "Not Found" });
   });
 
-  app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
+  app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
     console.error(err);
     res.status(500).json({ message: "Internal Server Error" });
   });
