@@ -1,0 +1,37 @@
+{
+  "name": "lions-gym-crm-frontend",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Frontend for Lions Gym CRM",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint . --ext .ts,.tsx",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
+    "axios": "^1.6.6",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.16.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^29.5.5",
+    "@types/node": "^20.14.2",
+    "@types/react": "^18.3.4",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^6.9.0",
+    "@typescript-eslint/parser": "^6.9.0",
+    "@vitejs/plugin-react": "^4.3.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-react": "^7.35.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "jest": "^29.6.2",
+    "react-test-renderer": "^18.3.1",
+    "ts-jest": "^29.1.1",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.1"
+  }
+}
