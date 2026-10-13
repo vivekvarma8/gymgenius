@@ -4,8 +4,6 @@ import {
   PaperPlaneRight,
   Trash,
   X,
-  Copy,
-  Check,
   Barbell,
   ForkKnife,
   Funnel,
@@ -31,7 +29,7 @@ const QUICK_ACTIONS = [
 export function ChatWidget() {
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
-  const [copiedId, setCopiedId] = useState<string | null>(null);
+
 
   useEffect(() => {
     setMounted(true);
@@ -129,11 +127,6 @@ export function ChatWidget() {
     ]);
   };
 
-  const handleCopy = (id: string, text: string) => {
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
-  };
 
   const renderBubbleContent = (entry: ChatEntry) => {
     const rawText = entry.text;
@@ -192,20 +185,7 @@ export function ChatWidget() {
           return <p key={idx} className="chat-simple-p">{formattedLine}</p>;
         })}
 
-        {/* Copy Button for Assistant Responses */}
-        {entry.role === "assistant" && entry.id !== "init" && (
-          <div style={{ marginTop: "10px", display: "flex", justifyContent: "flex-end" }}>
-            <button
-              type="button"
-              className="chat-wa-copy-btn"
-              onClick={() => handleCopy(entry.id, entry.text)}
-              title="Copy to clipboard"
-            >
-              {copiedId === entry.id ? <Check size={13} weight="bold" /> : <Copy size={13} weight="bold" />}
-              <span>{copiedId === entry.id ? "Copied" : "Copy Plan"}</span>
-            </button>
-          </div>
-        )}
+
       </div>
     );
   };
